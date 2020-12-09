@@ -2,8 +2,8 @@ import java.util.Collections;
 
 class Parent {
   char letter;
-  int parentWeight;
-  int parentValue;
+  float parentWeight;
+  float parentValue;
   ArrayList<Genstand> kombination = new ArrayList<Genstand>();
 
 
@@ -14,7 +14,7 @@ class Parent {
     Collections.shuffle(genstande);
 
     // Only add a maximum of 6 objects
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < amountOfObjects; i++) {
       // Retrieve the specific object
       Genstand genstand = genstande.get(i);
 

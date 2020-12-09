@@ -4,6 +4,12 @@ ArrayList<Parent> parents = new ArrayList<Parent>();
 // This variable will eventually contain all the values/prices from the parents
 float overallParentValue = 0;
 
+// You can change this variable to adjust how many parents are being created and used
+int amountOfParents = 10;
+
+// You can change this variable to adjust how many objects are being created and used inside a parent
+int amountOfObjects = 12;
+
 void setup() {
   // Name, weight, value
   genstande.add(new Genstand("kort", 90, 150));
@@ -32,7 +38,7 @@ void setup() {
   genstande.add(new Genstand("telt", 2000, 150));
   
   // Only add a maximum of 4 parents
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < amountOfParents; i++) {
     Parent parent = new Parent(genstande, (char) ('a' + i));
 
     if (!(parent.parentWeight > 5000)) {
@@ -54,7 +60,7 @@ void parentMating() {
   for (Parent parent : parents) {
     // Calculation:
     float parentProbability = parent.parentValue / overallParentValue * 4.0;
-    println("Parent " + parent.letter + " has a probability on: " + parentProbability);
+    println("Parent " + parent.letter + " has a probability of: " + parentProbability);
 
     for (int i = 1; i < parentProbability; i++) {
       matingParentPool.add(parent);
