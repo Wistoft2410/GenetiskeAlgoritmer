@@ -1,8 +1,10 @@
+ArrayList<Genstand> genstande = new ArrayList<Genstand>();
+ArrayList<Parent> parents = new ArrayList<Parent>();
+
+// This variable will eventually contain all the values/prices from the parents
+float overallParentValue = 0;
+
 void setup() {
-  size(800, 800);
-
-  ArrayList<Genstand> genstande = new ArrayList<Genstand>();
-
   // Name, weight, value
   genstande.add(new Genstand("kort", 90, 150));
   genstande.add(new Genstand("kompas", 130, 35));
@@ -28,22 +30,40 @@ void setup() {
   genstande.add(new Genstand("bog", 300, 10));
   genstande.add(new Genstand("notesbog", 900, 1));
   genstande.add(new Genstand("telt", 2000, 150));
-
-  ArrayList<Parent> parents = new ArrayList<Parent>();
   
   // Only add a maximum of 4 parents
   for (int i = 0; i < 4; i++) {
-    Parent parent = new Parent(genstande);
-    if (!(parent.overallWeight  > 5000)) {
+    Parent parent = new Parent(genstande, (char) ('a' + i));
+
+    if (!(parent.parentWeight > 5000)) {
       parents.add(parent);
+      overallParentValue += parent.parentValue;
     }
   }
+
+  parentMating();
 }
 
 void draw() {
-  
 }
 
-void newIteration() {
-  
+void parentMating() {
+  ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
+
+  println("here are all the parents' probability:");
+  for (Parent parent : parents) {
+    // Calculation:
+    float parentProbability = parent.parentValue / overallParentValue * 4.0;
+    println("Parent " + parent.letter + " has a probability on: " + parentProbability);
+
+    for (int i = 1; i < parentProbability; i++) {
+      matingParentPool.add(parent);
+    }
+  }
+
+  println();
+  println("here are all the parents in the mating pool");
+  for (Parent parent : matingParentPool) {
+    println(parent.letter);
+  }
 }

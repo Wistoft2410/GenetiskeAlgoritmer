@@ -1,11 +1,15 @@
 import java.util.Collections;
 
 class Parent {
-  int overallWeight = 0;
+  char letter;
+  int parentWeight;
+  int parentValue;
   ArrayList<Genstand> kombination = new ArrayList<Genstand>();
 
 
-  Parent(ArrayList<Genstand> genstande) {
+  Parent(ArrayList<Genstand> genstande, char letter) {
+    this.letter = letter;
+
     // Shuffle array list so it's random
     Collections.shuffle(genstande);
 
@@ -15,17 +19,13 @@ class Parent {
       Genstand genstand = genstande.get(i);
 
       // Collect all the weights
-      overallWeight += genstand.weight;
+      parentWeight += genstand.weight;
+
+      // Collect all the values
+      parentValue += genstand.value;
 
       // Finally add the object to this parent's combination/DNA
       kombination.add(genstand);
     }
-    println("overallWeight: " + overallWeight);
-    println("Here comes the objects:");
-    for (Genstand genstand : kombination) {
-      println(genstand.name);
-    }
-    println();
-    println();
   }
 }
