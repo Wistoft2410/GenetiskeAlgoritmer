@@ -28,6 +28,16 @@ void setup() {
   genstande.add(new Genstand("bog", 300, 10));
   genstande.add(new Genstand("notesbog", 900, 1));
   genstande.add(new Genstand("telt", 2000, 150));
+
+  ArrayList<Parent> parents = new ArrayList<Parent>();
+  
+  // Only add a maximum of 4 parents
+  for (int i = 0; i < 4; i++) {
+    Parent parent = new Parent(genstande);
+    if (!(parent.overallWeight  > 5000)) {
+      parents.add(parent);
+    }
+  }
 }
 
 void draw() {

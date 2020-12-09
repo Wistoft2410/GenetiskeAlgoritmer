@@ -1,16 +1,12 @@
 class Genstand {
   String name;
-  float weight;
+  int weight;
   int value;
   
-  Genstand(String tempName, float tempWeight, int tempValue) {
+  Genstand(String tempName, int tempWeight, int tempValue) {
     name = tempName; 
     weight = tempWeight; 
     value = tempValue; 
-  }
-  
-  void shuffle() {
-
   }
   
 }
