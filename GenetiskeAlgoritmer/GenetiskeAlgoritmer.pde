@@ -39,7 +39,7 @@ void setup() {
   genstande.add(new Genstand("notesbog", 900, 1));
   genstande.add(new Genstand("telt", 2000, 150));
   
-  // Only add a maximum of 4 parents
+  // Only add a maximum of amountOfParents parents
   for (int i = 0; i < amountOfParents; i++) {
     Parent parent = new Parent(genstande, (char) ('a' + i));
 
@@ -100,4 +100,3 @@ void crossOver(ArrayList<Parent> matingParentPool) {
 
   // *** MIX GENES ***
 }
-
