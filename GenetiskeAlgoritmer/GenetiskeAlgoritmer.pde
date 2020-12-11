@@ -59,41 +59,47 @@ void draw() {
 ArrayList<Parent> parentMating() {
   ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
 
-  //println("here are all the parents' probability:");
+  println("here are all the parents' probability:");
   for (Parent parent : parents) {
     // Calculation:
     float parentProbability = (parent.parentValue / overallParentValue) * 4.0;
-    //println("Parent " + parent.letter + " has a probability of: " + parentProbability);
+    println("Parent " + parent.letter + " has a probability of: " + parentProbability);
 
     for (int i = 1; i < parentProbability; i++) {
       matingParentPool.add(parent);
     }
   }
 
-  //println();
-  //println("here are all the parents in the mating pool");
-  //for (Parent parent : matingParentPool) {
-  //  println(parent.letter);
-  //}
+  println();
+  println("here are all the parents in the mating pool");
+  for (Parent parent : matingParentPool) {
+    println(parent.letter);
+  }
 
   return matingParentPool;
 }
 
 void crossOver(ArrayList<Parent> matingParentPool) {
-  //println("Here are listed all the parents:");
-  //for (Parent parent : matingParentPool) {
-  //  println(parent.parentValue);
-  //}
-  //println();
+  // *** PICK THE TWO HIGHEST VALUED PARENTS ***
+  if (!matingParentPool.isEmpty()) {
+    // Pick the highest valued parent
+    Parent parentHighValue1 = Collections.max(matingParentPool);
+    // Remove the highest valued parent so the next call to "Collections.max" will pick
+    // the next largest parent!
+    matingParentPool.remove(parentHighValue1);
+  } else {
+    println("Can't pick a highest valued parent since the list is empty :/");
+  }
 
-  // Pick two highest valued parents
-  Parent parentHighValue1 = Collections.max(matingParentPool);
-  matingParentPool.remove(parentHighValue1);
-  Parent parentHighValue2 = Collections.max(matingParentPool);
+  if (!matingParentPool.isEmpty()) {
+    // Pick the second highest valued parent
+    Parent parentHighValue2 = Collections.max(matingParentPool);
+  } else {
+    println("Can't pick a second highest valued parent since the list is empty :/");
+  }
 
-  // Mix genes
-  //println("Here are listed the two parents with the highest value:");
-  //println(parentHighValue1.parentValue);
-  //println(parentHighValue2.parentValue);
+  // *** MIX GENES ***
+
+
 }
 
