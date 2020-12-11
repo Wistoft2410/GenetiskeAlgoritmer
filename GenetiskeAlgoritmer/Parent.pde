@@ -1,6 +1,7 @@
+import java.lang.Float;
 import java.util.Collections;
 
-class Parent {
+class Parent implements Comparable<Parent> {
   char letter;
   float parentWeight;
   float parentValue;
@@ -27,5 +28,14 @@ class Parent {
       // Finally add the object to this parent's combination/DNA
       kombination.add(genstand);
     }
+  }
+
+  @Override
+  public int compareTo(Parent parent) {
+    // use the value which should be used for comparison instead of getSuitability().
+    // remember: here you have private access to object o. if your value is not a
+    // double, there is also a Integer.compare(..) function, but you could also just
+    // return value - other.value..
+    return Float.compare(this.parentValue, parent.parentValue);
   }
 }

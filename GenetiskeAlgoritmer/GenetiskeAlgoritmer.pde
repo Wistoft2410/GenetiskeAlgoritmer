@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 ArrayList<Genstand> genstande = new ArrayList<Genstand>();
 ArrayList<Parent> parents = new ArrayList<Parent>();
 
@@ -5,7 +7,7 @@ ArrayList<Parent> parents = new ArrayList<Parent>();
 float overallParentValue = 0;
 
 // You can change this variable to adjust how many parents are being created and used
-int amountOfParents = 10;
+int amountOfParents = 12;
 
 // You can change this variable to adjust how many objects are being created and used inside a parent
 int amountOfObjects = 12;
@@ -47,29 +49,51 @@ void setup() {
     }
   }
 
-  parentMating();
+  ArrayList<Parent> matingParentPool = parentMating();
+  crossOver(matingParentPool);
 }
 
 void draw() {
 }
 
-void parentMating() {
+ArrayList<Parent> parentMating() {
   ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
 
-  println("here are all the parents' probability:");
+  //println("here are all the parents' probability:");
   for (Parent parent : parents) {
     // Calculation:
-    float parentProbability = parent.parentValue / overallParentValue * 4.0;
-    println("Parent " + parent.letter + " has a probability of: " + parentProbability);
+    float parentProbability = (parent.parentValue / overallParentValue) * 4.0;
+    //println("Parent " + parent.letter + " has a probability of: " + parentProbability);
 
     for (int i = 1; i < parentProbability; i++) {
       matingParentPool.add(parent);
     }
   }
 
-  println();
-  println("here are all the parents in the mating pool");
-  for (Parent parent : matingParentPool) {
-    println(parent.letter);
-  }
+  //println();
+  //println("here are all the parents in the mating pool");
+  //for (Parent parent : matingParentPool) {
+  //  println(parent.letter);
+  //}
+
+  return matingParentPool;
 }
+
+void crossOver(ArrayList<Parent> matingParentPool) {
+  //println("Here are listed all the parents:");
+  //for (Parent parent : matingParentPool) {
+  //  println(parent.parentValue);
+  //}
+  //println();
+
+  // Pick two highest valued parents
+  Parent parentHighValue1 = Collections.max(matingParentPool);
+  matingParentPool.remove(parentHighValue1);
+  Parent parentHighValue2 = Collections.max(matingParentPool);
+
+  // Mix genes
+  //println("Here are listed the two parents with the highest value:");
+  //println(parentHighValue1.parentValue);
+  //println(parentHighValue2.parentValue);
+}
+
