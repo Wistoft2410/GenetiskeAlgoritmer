@@ -51,6 +51,15 @@ void setup() {
 
   ArrayList<Parent> matingParentPool = parentMating();
   crossOver(matingParentPool);
+
+  for (Parent parent : parents) {
+    println("Parent: " + parent.letter);
+    for (Genstand gestand : parent.kombination) {
+      println(gestand .gene);
+    }
+    println();
+  }
+
 }
 
 void draw() {
