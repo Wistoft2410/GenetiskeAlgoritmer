@@ -99,7 +99,5 @@ void crossOver(ArrayList<Parent> matingParentPool) {
   }
 
   // *** MIX GENES ***
-
-
 }
 

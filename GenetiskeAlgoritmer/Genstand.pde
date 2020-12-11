@@ -1,4 +1,7 @@
+import java.util.Random;
+
 class Genstand {
+  boolean gene;
   String name;
   float weight;
   float value;
@@ -7,5 +10,8 @@ class Genstand {
     name = tempName; 
     weight = tempWeight; 
     value = tempValue; 
+
+    Random rd = new Random();
+    gene = rd.nextBoolean();
   }
 }
