@@ -71,7 +71,7 @@ ArrayList<Parent> parentMating() {
   }
 
   println();
-  println("here are all the parents in the mating pool");
+  println("Here are all the parents in the mating pool");
   for (Parent parent : matingParentPool) {
     println(parent.letter);
   }
@@ -99,4 +99,6 @@ void crossOver(ArrayList<Parent> matingParentPool) {
   }
 
   // *** MIX GENES ***
+  
+  
 }
