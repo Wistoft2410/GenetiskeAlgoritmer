@@ -55,11 +55,14 @@ void setup() {
   for (Parent parent : parents) {
     println("Parent: " + parent.letter);
     for (Genstand gestand : parent.kombination) {
-      println(gestand .gene);
+      if (gestand.gene) {
+        println("1");
+      } else {
+        println("0");
+      }
     }
     println();
   }
-
 }
 
 void draw() {
