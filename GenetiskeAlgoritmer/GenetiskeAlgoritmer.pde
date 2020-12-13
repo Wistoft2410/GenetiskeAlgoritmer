@@ -41,7 +41,7 @@ void setup() {
   
   // Only add a maximum of amountOfParents parents
   for (int i = 0; i < amountOfParents; i++) {
-    Parent parent = new Parent(genstande, (char) ('a' + i));
+    Parent parent = new Parent(genstande, (char) ('a' + i), true);
 
     if (!(parent.parentWeight > 5000)) {
       parents.add(parent);
@@ -50,19 +50,23 @@ void setup() {
   }
 
   ArrayList<Parent> matingParentPool = parentMating();
-  crossOver(matingParentPool);
+  ArrayList<Parent> newGeneration = crossOver(matingParentPool);
 
-  for (Parent parent : parents) {
-    println("Parent: " + parent.letter);
-    for (Genstand gestand : parent.kombination) {
-      if (gestand.gene) {
-        println("1");
-      } else {
-        println("0");
-      }
-    }
+  println("Here are the new generation:");
+  for (Parent parent : newGeneration) {
+    for (Genstand genstand : parent.kombination) println(genstand.gene);
     println();
   }
+
+  println("Here are the new mutation:");
+  for (Parent parent : newGeneration) {
+    for (Genstand genstand : parent.kombination) println(genstand.gene);
+    println();
+  }
+
+  // This function won't return a new array as the other functions does.
+  // Instead it will mutate the existing array as that makes a bit more sense
+  mutation(newGeneration);
 }
 
 void draw() {
@@ -71,27 +75,19 @@ void draw() {
 ArrayList<Parent> parentMating() {
   ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
 
-  println("here are all the parents' probability:");
   for (Parent parent : parents) {
     // Calculation:
     float parentProbability = (parent.parentValue / overallParentValue) * 4.0;
-    println("Parent " + parent.letter + " has a probability of: " + parentProbability);
 
     for (int i = 1; i < parentProbability; i++) {
       matingParentPool.add(parent);
     }
   }
 
-  println();
-  println("Here are all the parents in the mating pool");
-  for (Parent parent : matingParentPool) {
-    println(parent.letter);
-  }
-
   return matingParentPool;
 }
 
-void crossOver(ArrayList<Parent> matingParentPool) {
+ArrayList<Parent> crossOver(ArrayList<Parent> matingParentPool) {
   // *** PICK THE TWO HIGHEST VALUED PARENTS ***
   if (!matingParentPool.isEmpty()) {
     // Pick the highest valued parent
@@ -111,6 +107,42 @@ void crossOver(ArrayList<Parent> matingParentPool) {
   }
 
   // *** MIX GENES ***
-  
-  
+  ArrayList<Parent> newGeneration = new ArrayList<Parent>();
+
+  if (matingParentPool.size() > 1) {
+    Parent parent1 = matingParentPool.get(0);
+    Parent parent2 = matingParentPool.get(1);
+
+    ArrayList<Genstand> newChildObjects1 = new ArrayList<Genstand>();
+    ArrayList<Genstand> newChildObjects2 = new ArrayList<Genstand>();
+
+    for (int i = 0; i < amountOfObjects / 2; i++) {
+      newChildObjects1.add(parent2.kombination.get(i));
+      newChildObjects2.add(parent1.kombination.get(i));
+    }
+
+    for (int i = 6; i < amountOfObjects; i++) {
+      newChildObjects1.add(parent1.kombination.get(i));
+      newChildObjects2.add(parent2.kombination.get(i));
+    }
+
+    // Add the new paired genes to the new parent (child) object
+    newGeneration.add(new Parent(newChildObjects1, 'w', false));
+    newGeneration.add(new Parent(newChildObjects2, 'v', false));
+
+    return newGeneration;
+  } else println("Not enough parents :/");
+
+  // return empty generation to signal that no new generation could be made.
+  // Also have to do this since we must return something
+  return new ArrayList<Parent>();
+}
+
+void mutation(ArrayList<Parent> newGeneration) {
+  for (Parent parent : newGeneration) {
+    for (Genstand genstand : parent.kombination) {
+      // flip the gene boolean variable with a chance of 1%
+      genstand.gene = !gene ? (int) random(1, 101) == 1 : gene;
+    }
+  }
 }

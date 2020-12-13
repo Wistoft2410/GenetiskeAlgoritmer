@@ -8,11 +8,11 @@ class Parent implements Comparable<Parent> {
   ArrayList<Genstand> kombination = new ArrayList<Genstand>();
 
 
-  Parent(ArrayList<Genstand> genstande, char letter) {
+  Parent(ArrayList<Genstand> genstande, char letter, boolean shuffle) {
     this.letter = letter;
 
     // Shuffle array list so it's random
-    Collections.shuffle(genstande);
+    if (shuffle) Collections.shuffle(genstande);
 
     // Only add a maximum of 6 objects
     for (int i = 0; i < amountOfObjects; i++) {
