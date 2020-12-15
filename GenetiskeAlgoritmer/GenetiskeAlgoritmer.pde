@@ -38,7 +38,7 @@ void setup() {
   genstande.add(new Genstand("bog", 300, 10));
   genstande.add(new Genstand("notesbog", 900, 1));
   genstande.add(new Genstand("telt", 2000, 150));
-  
+
   // Only add a maximum of amountOfParents parents
   for (int i = 0; i < amountOfParents; i++) {
     Parent parent = new Parent(genstande, (char) ('a' + i), true);
@@ -53,25 +53,19 @@ void setup() {
 }
 
 void feedbackLoop() {
-
-  ArrayList<Parent> matingParentPool = newGeneration.isEmpty() ? parentMating(parents) : parentMating(newGeneration);
-
-  newGeneration = crossOver(matingParentPool);
-
-  // This function won't return a new array as the other functions does.
-  // Instead it will mutate the existing array as that makes a bit more sense
-  mutation(newGeneration);
-}
-
-ArrayList<Parent> newGeneration = new ArrayList<Parent>();
-
-void draw() {
   for (int i = 0; i < 10; i++) {
     println("iteration number: " + (i + 1));
     println();
 
-    feedbackLoop();
-    if (newGeneration.size() == 1) {
+    ArrayList<Parent> matingParentPool = newGeneration.isEmpty() ? parentMating(parents) : parentMating(newGeneration);
+
+    newGeneration = crossOver(matingParentPool);
+
+    // This function won't return a new array as the other functions does.
+    // Instead it will mutate the existing array as that makes a bit more sense
+    mutation(newGeneration);
+
+    if (!newGeneration.isEmpty()) {
       println("We have now found the most optimized parent/kombination of items in a back under 5kg:");
       Parent parent = newGeneration.get(0);
       println("The overall weight of the parent/kombination is: " + parent.parentWeight + "grams");
@@ -85,13 +79,14 @@ void draw() {
         println("item value: " + genstand.value);
         println("item gene: " + genstand.gene);
       }
-
-      break;
-    } else if (newGeneration.isEmpty()) {
-      println("Didn't produce anything good :/");
-      break;
     }
   }
+}
+
+ArrayList<Parent> newGeneration = new ArrayList<Parent>();
+
+void draw() {
+  feedbackLoop();
 }
 
 ArrayList<Parent> parentMating(ArrayList<Parent> generation) {
