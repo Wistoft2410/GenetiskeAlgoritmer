@@ -14,10 +14,15 @@ int amountOfObjects = 12;
 void setup() {
   gener.data();
   noLoop();
+  size(800, 800);
+
 }
 
 void draw() {
   pop.feedbackLoop();
+  line(0,height/2,width,height/2);         
+  line(width/4,0,width/4,height); 
+  
 }
 
 
