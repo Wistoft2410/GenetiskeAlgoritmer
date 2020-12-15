@@ -39,7 +39,7 @@ class Population {
     for (Parent parent : newGeneration) {
       for (Genstand genstand : parent.kombination) {
         // flip the gene boolean variable with a chance of 1%
-        genstand.gene = (int) random(1, 101) == 1  ? !genstand.gene : genstand.gene;
+        genstand.gene = (int) random(1, 101) == 1 ? !genstand.gene : genstand.gene;
       }
     }
   }
