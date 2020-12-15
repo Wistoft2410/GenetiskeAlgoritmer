@@ -49,7 +49,7 @@ void setup() {
     }
   }
 
-  ArrayList<Parent> matingParentPool = parentMating();
+  ArrayList<Parent> matingParentPool = parentMating(newGeneration);
   ArrayList<Parent> newGeneration = crossOver(matingParentPool);
 
   println("Here are the new generation:");
@@ -72,7 +72,7 @@ void setup() {
 void draw() {
 }
 
-ArrayList<Parent> parentMating() {
+ArrayList<Parent> parentMating(ArrayList<Parent> newGenerations) {
   ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
 
   for (Parent parent : parents) {
@@ -142,7 +142,7 @@ void mutation(ArrayList<Parent> newGeneration) {
   for (Parent parent : newGeneration) {
     for (Genstand genstand : parent.kombination) {
       // flip the gene boolean variable with a chance of 1%
-      genstand.gene = !gene ? (int) random(1, 101) == 1 : gene;
+      genstand.gene = !genstand.gene ? (int) random(1, 101) == 1 : genstand.gene;
     }
   }
 }
