@@ -1,7 +1,9 @@
 import java.util.Collections;
 
-Genstand genstand = new Genstand("ok", 2, 1);
+Genstand gener = new Genstand(" ", 0, 0);
 Population pop = new Population();
+
+ArrayList<Parent> newGeneration = new ArrayList<Parent>();
 ArrayList<Genstand> genstande = new ArrayList<Genstand>();
 ArrayList<Parent> parents = new ArrayList<Parent>();
 
@@ -10,16 +12,13 @@ int amountOfParents = 12;
 int amountOfObjects = 12;
 
 void setup() {
-  genstand.data();
+  gener.data();
   noLoop();
 }
 
 void draw() {
   pop.feedbackLoop();
 }
-
-ArrayList<Parent> newGeneration = new ArrayList<Parent>();
-
 
 
 ArrayList<Parent> parentMating(ArrayList<Parent> generation) {

@@ -1,7 +1,6 @@
 import java.lang.Float;
 import java.util.Collections;
 
-
 class Parent implements Comparable<Parent> {
   char letter;
   float parentWeight;
