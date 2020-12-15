@@ -62,22 +62,22 @@ ArrayList<Parent> crossOver(ArrayList<Parent> matingParentPool) {
     Parent parent1 = matingParentPool.get(0);
     Parent parent2 = matingParentPool.get(1);
 
-    ArrayList<Genstand> newChildObjects1 = new ArrayList<Genstand>();
-    ArrayList<Genstand> newChildObjects2 = new ArrayList<Genstand>();
+    ArrayList<Genstand> offspring1 = new ArrayList<Genstand>();
+    ArrayList<Genstand> offspring2 = new ArrayList<Genstand>();
 
     for (int i = 0; i < amountOfObjects / 2; i++) {
-      newChildObjects1.add(parent2.kombination.get(i));
-      newChildObjects2.add(parent1.kombination.get(i));
+      offspring1.add(parent2.kombination.get(i));
+      offspring2.add(parent1.kombination.get(i));
     }
 
     for (int i = 6; i < amountOfObjects; i++) {
-      newChildObjects1.add(parent1.kombination.get(i));
-      newChildObjects2.add(parent2.kombination.get(i));
+      offspring1.add(parent1.kombination.get(i));
+      offspring2.add(parent2.kombination.get(i));
     }
 
     // Add the new paired genes to the new parent (child) object
-    newGeneration.add(new Parent(newChildObjects1, 'w', false));
-    newGeneration.add(new Parent(newChildObjects2, 'v', false));
+    newGeneration.add(new Parent(offspring1, 'w', false));
+    newGeneration.add(new Parent(offspring2, 'v', false));
 
     return newGeneration;
   } else println("Not enough parents :/");
