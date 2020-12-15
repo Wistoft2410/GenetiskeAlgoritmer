@@ -44,6 +44,9 @@ ArrayList<Parent> parentMating(ArrayList<Parent> generation) {
 ArrayList<Parent> crossOver(ArrayList<Parent> matingParentPool) {
   // *** PICK THE TWO HIGHEST VALUED PARENTS ***
   if (!matingParentPool.isEmpty()) {
+    // TODO: Det er her problemet er.
+    // Vi danner kun TO nye parents og ikke flere :/
+
     // Pick the highest valued parent
     Parent parentHighValue1 = Collections.max(matingParentPool);
     // Remove the highest valued parent so the next call to "Collections.max" will pick
