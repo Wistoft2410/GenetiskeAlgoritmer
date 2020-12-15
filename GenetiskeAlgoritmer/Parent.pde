@@ -1,12 +1,12 @@
 import java.lang.Float;
 import java.util.Collections;
 
+
 class Parent implements Comparable<Parent> {
   char letter;
   float parentWeight;
   float parentValue;
   ArrayList<Genstand> kombination = new ArrayList<Genstand>();
-
 
   Parent(ArrayList<Genstand> genstande, char letter, boolean shuffle) {
     this.letter = letter;
@@ -18,14 +18,8 @@ class Parent implements Comparable<Parent> {
     for (int i = 0; i < amountOfObjects; i++) {
       // Retrieve the specific object
       Genstand genstand = genstande.get(i);
-
-      // Collect all the weights
       parentWeight += genstand.weight;
-
-      // Collect all the values
       parentValue += genstand.value;
-
-      // Finally add the object to this parent's combination/DNA
       kombination.add(genstand);
     }
   }

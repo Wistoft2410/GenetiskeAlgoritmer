@@ -1,5 +1,6 @@
 import java.util.Collections;
 
+Genstand genstand = new Genstand("ok", 2, 1);
 Population pop = new Population();
 ArrayList<Genstand> genstande = new ArrayList<Genstand>();
 ArrayList<Parent> parents = new ArrayList<Parent>();
@@ -9,31 +10,7 @@ int amountOfParents = 12;
 int amountOfObjects = 12;
 
 void setup() {
-  // Name, weight, value
-  genstande.add(new Genstand("kort", 90, 150));
-  genstande.add(new Genstand("kompas", 130, 35));
-  genstande.add(new Genstand("vand", 1530, 200));
-  genstande.add(new Genstand("sandwich", 500, 160));
-  genstande.add(new Genstand("sukker", 150, 60));
-  genstande.add(new Genstand("dåsemad", 680, 45));
-  genstande.add(new Genstand("banan", 270, 60));
-  genstande.add(new Genstand("æble", 390, 40));
-  genstande.add(new Genstand("ost", 230, 30));
-  genstande.add(new Genstand("øl", 520, 10));
-  genstande.add(new Genstand("solcreme", 110, 70));
-  genstande.add(new Genstand("kamera", 320, 30));
-  genstande.add(new Genstand("T-shirt", 240, 15));
-  genstande.add(new Genstand("bukser", 480, 10));
-  genstande.add(new Genstand("paraply", 730, 40));
-  genstande.add(new Genstand("vandhæfte bukser", 420, 70));
-  genstande.add(new Genstand("vandtæt overtøj", 430, 75));
-  genstande.add(new Genstand("pung", 220, 80));
-  genstande.add(new Genstand("solbriller", 70, 20));
-  genstande.add(new Genstand("håndklæde", 180, 12));
-  genstande.add(new Genstand("sokker", 40, 50));
-  genstande.add(new Genstand("bog", 300, 10));
-  genstande.add(new Genstand("notesbog", 900, 1));
-  genstande.add(new Genstand("telt", 2000, 150));
+  genstand.data();
 
   // Only add a maximum of amountOfParents parents
   for (int i = 0; i < amountOfParents; i++) {
