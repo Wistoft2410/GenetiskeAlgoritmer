@@ -11,17 +11,6 @@ int amountOfObjects = 12;
 
 void setup() {
   genstand.data();
-
-  // Only add a maximum of amountOfParents parents
-  for (int i = 0; i < amountOfParents; i++) {
-    Parent parent = new Parent(genstande, (char) ('a' + i), true);
-
-    if (!(parent.parentWeight > 5000)) {
-      parents.add(parent);
-      overallParentValue += parent.parentValue;
-    }
-  }
-
   noLoop();
 }
 
