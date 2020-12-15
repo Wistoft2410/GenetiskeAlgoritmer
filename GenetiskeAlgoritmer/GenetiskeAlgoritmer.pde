@@ -49,33 +49,55 @@ void setup() {
     }
   }
 
-  ArrayList<Parent> matingParentPool = parentMating(newGeneration);
-  ArrayList<Parent> newGeneration = crossOver(matingParentPool);
+  noLoop();
+}
 
-  println("Here are the new generation:");
-  for (Parent parent : newGeneration) {
-    for (Genstand genstand : parent.kombination) println(genstand.gene);
-    println();
-  }
+void feedbackLoop() {
 
-  println("Here are the new mutation:");
-  for (Parent parent : newGeneration) {
-    for (Genstand genstand : parent.kombination) println(genstand.gene);
-    println();
-  }
+  ArrayList<Parent> matingParentPool = newGeneration.isEmpty() ? parentMating(parents) : parentMating(newGeneration);
+
+  newGeneration = crossOver(matingParentPool);
 
   // This function won't return a new array as the other functions does.
   // Instead it will mutate the existing array as that makes a bit more sense
   mutation(newGeneration);
 }
 
+ArrayList<Parent> newGeneration = new ArrayList<Parent>();
+
 void draw() {
+  for (int i = 0; i < 10; i++) {
+    println("iteration number: " + (i + 1));
+    println();
+
+    feedbackLoop();
+    if (newGeneration.size() == 1) {
+      println("We have now found the most optimized parent/kombination of items in a back under 5kg:");
+      Parent parent = newGeneration.get(0);
+      println("The overall weight of the parent/kombination is: " + parent.parentWeight + "grams");
+      println("The overall value of the parent/kombination is: " + parent.parentValue + "kr");
+      println("Here are all its items:");
+
+      for (Genstand genstand : parent.kombination) {
+        println();
+        println("item name: " + genstand.name);
+        println("item weight: " + genstand.weight);
+        println("item value: " + genstand.value);
+        println("item gene: " + genstand.gene);
+      }
+
+      break;
+    } else if (newGeneration.isEmpty()) {
+      println("Didn't produce anything good :/");
+      break;
+    }
+  }
 }
 
-ArrayList<Parent> parentMating(ArrayList<Parent> newGenerations) {
+ArrayList<Parent> parentMating(ArrayList<Parent> generation) {
   ArrayList<Parent> matingParentPool = new ArrayList<Parent>();
 
-  for (Parent parent : parents) {
+  for (Parent parent : generation) {
     // Calculation:
     float parentProbability = (parent.parentValue / overallParentValue) * 4.0;
 
